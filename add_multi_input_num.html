@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="">
+        <h1>Total Price <span id="total_price">0</span></h1>
+        <div>
+            <input placeholder="Price" type="text" id="price">
+            <input placeholder="Quantity" type="text" id="quantity">
+            <input placeholder="Total" type="text" id="total">
+        </div>
+        <div>
+            <input placeholder="Price" type="text" id="price">
+            <input placeholder="Quantity" type="text" id="quantity">
+            <input placeholder="Total" type="text" id="total">
+        </div>
+        <div>
+            <input placeholder="Price" type="text" id="price">
+            <input placeholder="Quantity" type="text" id="quantity">
+            <input placeholder="Total" type="text" id="total">
+        </div>
+
+    </form>
+
+    <script>
+        const prices = document.querySelectorAll("#price");
+        const quantities = document.querySelectorAll("#quantity");
+        const totals = document.querySelectorAll("#total");
+        const total_price = document.getElementById("total_price")
+        const converter = (value) => parseInt(value) ? parseInt(value) : 0;
+        let price, total = 0;
+        prices.forEach(element => {
+            element.addEventListener('focusout', (e) => {
+                price = converter(e.target.value)
+            })
+        });
+        quantities.forEach((element, i) => {
+            element.addEventListener('focusout', (e) => {
+                totals[i].value = price * converter(e.target.value);
+                total_price.innerText = price * converter(e.target.value) + converter(total_price.innerText);
+            })
+
+        });
+
+
+
+    </script>
+</body>
+
+</html>
